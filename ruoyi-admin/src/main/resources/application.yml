@@ -1,7 +1,7 @@
 # 开发环境配置
 server:
   # 服务器的HTTP端口，默认为8080
-  port: 8080
+  port: 8085
   servlet:
     # 应用的访问路径
     context-path: /
@@ -33,7 +33,7 @@ captcha:
 # 日志配置
 logging:
   level:
-    org.dromara: @logging.level@
+    org.ggy: @logging.level@
     org.springframework: warn
     org.mybatis.spring.mapper: error
     org.apache.fury: warn
@@ -120,7 +120,7 @@ security:
 # 多租户配置
 tenant:
   # 是否开启
-  enable: true
+  enable: false
   # 排除表
   excludes:
     - sys_menu
@@ -139,12 +139,12 @@ tenant:
 mybatis-plus:
   # 自定义配置 是否全局开启逻辑删除 关闭后 所有逻辑删除功能将失效
   enableLogicDelete: true
-  # 多包名使用 例如 org.dromara.**.mapper,org.xxx.**.mapper
-  mapperPackage: org.dromara.**.mapper
+  # 多包名使用 例如 org.ggy.**.mapper,org.xxx.**.mapper
+  mapperPackage: org.ggy.**.mapper
   # 对应的 XML 文件位置
   mapperLocations: classpath*:mapper/**/*Mapper.xml
   # 实体扫描，多个package用逗号或者分号分隔
-  typeAliasesPackage: org.dromara.**.domain
+  typeAliasesPackage: org.ggy.**.domain
   global-config:
     dbConfig:
       # 主键类型
@@ -182,7 +182,7 @@ api-decrypt:
 springdoc:
   api-docs:
     # 是否开启接口文档
-    enabled: true
+    enabled: false
   info:
     # 标题
     title: '标题：RuoYi-Vue-Plus多租户管理系统_接口文档'
@@ -192,26 +192,26 @@ springdoc:
     version: '版本号: ${project.version}'
     # 作者信息
     contact:
-      name: Lion Li
-      email: crazylionli@163.com
-      url: https://gitee.com/dromara/RuoYi-Vue-Plus
+      name: GGY
+      email: 1547460633@qq.com
+      url: https://github.com/1547460633/ggy-plus.git
   #这里定义了两个分组，可定义多个，也可以不定义
   group-configs:
     - group: 1.演示模块
-      packages-to-scan: org.dromara.demo
+      packages-to-scan: org.ggy.demo
     - group: 2.通用模块
-      packages-to-scan: org.dromara.web
+      packages-to-scan: org.ggy.web
     - group: 3.系统模块
-      packages-to-scan: org.dromara.system
+      packages-to-scan: org.ggy.system
     - group: 4.代码生成模块
-      packages-to-scan: org.dromara.generator
+      packages-to-scan: org.ggy.generator
     - group: 5.工作流模块
-      packages-to-scan: org.dromara.workflow
+      packages-to-scan: org.ggy.workflow
 
 # 防止XSS攻击
 xss:
   # 过滤开关
-  enabled: true
+  enabled: false
   # 排除链接
   excludeUrls:
     - /system/notice
@@ -238,7 +238,7 @@ management:
 
 --- # 默认/推荐使用sse推送
 sse:
-  enabled: true
+  enabled: false
   path: /resource/sse
 
 --- # websocket
@@ -253,7 +253,7 @@ websocket:
 --- # warm-flow工作流配置
 warm-flow:
   # 是否开启工作流，默认true
-  enabled: true
+  enabled: false
   # 是否开启设计器ui
   ui: true
   # 是否显示流程图顶部文字

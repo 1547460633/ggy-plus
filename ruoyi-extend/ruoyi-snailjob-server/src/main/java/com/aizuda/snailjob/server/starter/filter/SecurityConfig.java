@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * 权限安全配置
  *
- * @author Lion Li
+ * @ggy
  */
 @Configuration
 public class SecurityConfig {
