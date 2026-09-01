@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.ggy.common.tenant.core.TenantEntity;
+import org.ggy.common.mybatis.core.domain.BaseEntity;
 
 /**
  * 字典类型表 sys_dict_type
@@ -15,7 +15,7 @@ import org.ggy.common.tenant.core.TenantEntity;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @TableName("sys_dict_type")
-public class SysDictType extends TenantEntity {
+public class SysDictType extends BaseEntity {
 
     /**
      * 字典主键

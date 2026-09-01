@@ -62,11 +62,6 @@
 
         <dependency>
             <groupId>org.ggy</groupId>
-            <artifactId>ruoyi-common-tenant</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.ggy</groupId>
             <artifactId>ruoyi-common-security</artifactId>
         </dependency>
 

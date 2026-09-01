@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.ggy.common.tenant.core.TenantEntity;
+import org.ggy.common.mybatis.core.domain.BaseEntity;
 
 
 /**
@@ -15,7 +15,7 @@ import org.ggy.common.tenant.core.TenantEntity;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @TableName("sys_notice")
-public class SysNotice extends TenantEntity {
+public class SysNotice extends BaseEntity {
 
     /**
      * 公告ID

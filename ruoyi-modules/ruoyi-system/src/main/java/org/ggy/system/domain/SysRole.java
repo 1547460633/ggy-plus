@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.ggy.common.tenant.core.TenantEntity;
+import org.ggy.common.mybatis.core.domain.BaseEntity;
 
 /**
  * 角色表 sys_role
@@ -18,7 +18,7 @@ import org.ggy.common.tenant.core.TenantEntity;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @TableName("sys_role")
-public class SysRole extends TenantEntity {
+public class SysRole extends BaseEntity {
 
     /**
      * 角色ID

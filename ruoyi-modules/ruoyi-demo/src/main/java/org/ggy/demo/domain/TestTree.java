@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.Version;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.ggy.common.tenant.core.TenantEntity;
+import org.ggy.common.mybatis.core.domain.BaseEntity;
 
 import java.io.Serial;
 
@@ -19,7 +19,7 @@ import java.io.Serial;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @TableName("test_tree")
-public class TestTree extends TenantEntity {
+public class TestTree extends BaseEntity {
 
     @Serial
     private static final long serialVersionUID = 1L;

@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.ggy.common.core.validate.AddGroup;
 import org.ggy.common.core.validate.EditGroup;
-import org.ggy.common.tenant.core.TenantEntity;
+import org.ggy.common.mybatis.core.domain.BaseEntity;
 import org.ggy.system.domain.SysSocial;
 
 /**
@@ -20,7 +20,7 @@ import org.ggy.system.domain.SysSocial;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @AutoMapper(target = SysSocial.class, reverseConvertGenerate = false)
-public class SysSocialBo extends TenantEntity {
+public class SysSocialBo extends BaseEntity {
 
     /**
      * 主键

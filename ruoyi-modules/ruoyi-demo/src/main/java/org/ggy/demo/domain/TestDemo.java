@@ -3,7 +3,7 @@ package org.ggy.demo.domain;
 import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.ggy.common.tenant.core.TenantEntity;
+import org.ggy.common.mybatis.core.domain.BaseEntity;
 
 import java.io.Serial;
 
@@ -16,7 +16,7 @@ import java.io.Serial;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @TableName("test_demo")
-public class TestDemo extends TenantEntity {
+public class TestDemo extends BaseEntity {
 
     @Serial
     private static final long serialVersionUID = 1L;

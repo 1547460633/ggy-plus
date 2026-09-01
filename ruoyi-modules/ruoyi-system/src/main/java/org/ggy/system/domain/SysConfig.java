@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.ggy.common.tenant.core.TenantEntity;
+import org.ggy.common.mybatis.core.domain.BaseEntity;
 
 /**
  * 参数配置表 sys_config
@@ -15,7 +15,7 @@ import org.ggy.common.tenant.core.TenantEntity;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @TableName("sys_config")
-public class SysConfig extends TenantEntity {
+public class SysConfig extends BaseEntity {
 
     /**
      * 参数主键

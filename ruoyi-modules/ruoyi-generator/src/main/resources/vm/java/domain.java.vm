@@ -6,7 +6,7 @@ package ${packageName}.domain;
 #end
 #end
 #if($IsTenant==1)
-import org.ggy.common.tenant.core.TenantEntity;
+import org.ggy.common.mybatis.core.domain.BaseEntity;
 #else
 import org.ggy.common.mybatis.core.domain.BaseEntity;
 #end

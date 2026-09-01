@@ -19,7 +19,6 @@ import org.ggy.common.json.utils.JsonUtils;
 import org.ggy.common.mybatis.core.page.PageQuery;
 import org.ggy.common.mybatis.core.page.TableDataInfo;
 import org.ggy.common.redis.utils.CacheUtils;
-import org.ggy.common.tenant.helper.TenantHelper;
 import org.ggy.system.domain.SysConfig;
 import org.ggy.system.domain.bo.SysConfigBo;
 import org.ggy.system.domain.vo.SysConfigVo;
@@ -83,16 +82,11 @@ public class SysConfigServiceImpl implements ISysConfigService, ConfigService {
     }
 
     /**
-     * 获取注册开关
-     *
-     * @param tenantId 租户id
-     * @return true开启，false关闭
+     * 获取注册开关。
      */
     @Override
     public boolean selectRegisterEnabled(String tenantId) {
-        String configValue = TenantHelper.dynamic(tenantId, () ->
-            this.selectConfigByKey("sys.account.registerUser")
-        );
+        String configValue = this.selectConfigByKey("sys.account.registerUser");
         return Convert.toBool(configValue);
     }
 

@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.ggy</groupId>
-    <artifactId>ruoyi-vue-plus</artifactId>
+    <artifactId>ggy-plus</artifactId>
     <version>${revision}</version>
 
     <name>RuoYi-Vue-Plus</name>

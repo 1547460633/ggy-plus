@@ -13,7 +13,6 @@ import me.zhyd.oauth.model.AuthUser;
 import org.ggy.common.core.constant.CacheConstants;
 import org.ggy.common.core.constant.Constants;
 import org.ggy.common.core.constant.SystemConstants;
-import org.ggy.common.core.constant.TenantConstants;
 import org.ggy.common.core.domain.dto.PostDTO;
 import org.ggy.common.core.domain.dto.RoleDTO;
 import org.ggy.common.core.domain.model.LoginUser;
@@ -25,8 +24,6 @@ import org.ggy.common.log.event.LogininforEvent;
 import org.ggy.common.mybatis.helper.DataPermissionHelper;
 import org.ggy.common.redis.utils.RedisUtils;
 import org.ggy.common.satoken.utils.LoginHelper;
-import org.ggy.common.tenant.exception.TenantException;
-import org.ggy.common.tenant.helper.TenantHelper;
 import org.ggy.system.domain.SysUser;
 import org.ggy.system.domain.bo.SysSocialBo;
 import org.ggy.system.domain.vo.*;
@@ -56,7 +53,6 @@ public class SysLoginService {
     @Value("${user.password.lockTime}")
     private Integer lockTime;
 
-    private final ISysTenantService tenantService;
     private final ISysPermissionService permissionService;
     private final ISysSocialService sysSocialService;
     private final ISysRoleService roleService;
@@ -112,10 +108,6 @@ public class SysLoginService {
             LoginUser loginUser = LoginHelper.getLoginUser();
             if (ObjectUtil.isNull(loginUser)) {
                 return;
-            }
-            if (TenantHelper.isEnable() && LoginHelper.isSuperAdmin()) {
-                // 超级管理员 登出清除动态租户
-                TenantHelper.clearDynamic();
             }
             recordLogininfor(loginUser.getTenantId(), loginUser.getUsername(), Constants.LOGOUT, MessageUtils.message("user.logout.success"));
         } catch (NotLoginException ignored) {
@@ -217,35 +209,6 @@ public class SysLoginService {
 
         // 登录成功 清空错误次数
         RedisUtils.deleteObject(errorKey);
-    }
-
-    /**
-     * 校验租户
-     *
-     * @param tenantId 租户ID
-     */
-    public void checkTenant(String tenantId) {
-        if (!TenantHelper.isEnable()) {
-            return;
-        }
-        if (StringUtils.isBlank(tenantId)) {
-            throw new TenantException("tenant.number.not.blank");
-        }
-        if (TenantConstants.DEFAULT_TENANT_ID.equals(tenantId)) {
-            return;
-        }
-        SysTenantVo tenant = tenantService.queryByTenantId(tenantId);
-        if (ObjectUtil.isNull(tenant)) {
-            log.info("登录租户：{} 不存在.", tenantId);
-            throw new TenantException("tenant.not.exists");
-        } else if (SystemConstants.DISABLE.equals(tenant.getStatus())) {
-            log.info("登录租户：{} 已被停用.", tenantId);
-            throw new TenantException("tenant.blocked");
-        } else if (ObjectUtil.isNotNull(tenant.getExpireTime())
-            && new Date().after(tenant.getExpireTime())) {
-            log.info("登录租户：{} 已超过有效期.", tenantId);
-            throw new TenantException("tenant.expired");
-        }
     }
 
 }
