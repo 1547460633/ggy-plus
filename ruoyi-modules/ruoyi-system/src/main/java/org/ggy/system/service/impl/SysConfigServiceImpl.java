@@ -85,7 +85,7 @@ public class SysConfigServiceImpl implements ISysConfigService, ConfigService {
      * 获取注册开关。
      */
     @Override
-    public boolean selectRegisterEnabled(String tenantId) {
+    public boolean selectRegisterEnabled() {
         String configValue = this.selectConfigByKey("sys.account.registerUser");
         return Convert.toBool(configValue);
     }

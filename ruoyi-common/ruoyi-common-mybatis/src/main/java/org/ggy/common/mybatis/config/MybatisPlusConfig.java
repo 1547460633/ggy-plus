@@ -8,9 +8,7 @@ import com.baomidou.mybatisplus.core.incrementer.IdentifierGenerator;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.OptimisticLockerInnerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
-import com.baomidou.mybatisplus.extension.plugins.inner.TenantLineInnerInterceptor;
 import org.ggy.common.core.factory.YmlPropertySourceFactory;
-import org.ggy.common.core.utils.SpringUtils;
 import org.ggy.common.mybatis.aspect.DataPermissionPointcutAdvisor;
 import org.ggy.common.mybatis.handler.InjectionMetaObjectHandler;
 import org.ggy.common.mybatis.handler.MybatisExceptionHandler;
@@ -38,12 +36,6 @@ public class MybatisPlusConfig {
     @Bean
     public MybatisPlusInterceptor mybatisPlusInterceptor() {
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
-        // 多租户插件 必须放到第一位
-        try {
-            TenantLineInnerInterceptor tenant = SpringUtils.getBean(TenantLineInnerInterceptor.class);
-            interceptor.addInnerInterceptor(tenant);
-        } catch (BeansException ignore) {
-        }
         // 数据权限处理
         interceptor.addInnerInterceptor(dataPermissionInterceptor());
         // 分页插件
@@ -133,8 +125,6 @@ public class MybatisPlusConfig {
      * IllegalSQLInnerInterceptor sql性能规范插件(垃圾SQL拦截)
      * IdentifierGenerator 自定义主键策略
      * https://baomidou.com/pages/568eb2/
-     * TenantLineInnerInterceptor 多租户插件
-     * https://baomidou.com/pages/aef2f2/
      * DynamicTableNameInnerInterceptor 动态表名插件
      * https://baomidou.com/pages/2a45ff/
      */

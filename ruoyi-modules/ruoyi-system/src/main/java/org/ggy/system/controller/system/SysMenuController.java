@@ -1,12 +1,9 @@
 package org.ggy.system.controller.system;
 
 import cn.dev33.satoken.annotation.SaCheckPermission;
-import cn.dev33.satoken.annotation.SaCheckRole;
-import cn.dev33.satoken.annotation.SaMode;
 import cn.hutool.core.lang.tree.Tree;
 import lombok.RequiredArgsConstructor;
 import org.ggy.common.core.constant.SystemConstants;
-import org.ggy.common.core.constant.TenantConstants;
 import org.ggy.common.core.domain.R;
 import org.ggy.common.core.utils.StringUtils;
 import org.ggy.common.idempotent.annotation.RepeatSubmit;
@@ -52,10 +49,6 @@ public class SysMenuController extends BaseController {
     /**
      * 获取菜单列表
      */
-    @SaCheckRole(value = {
-        TenantConstants.SUPER_ADMIN_ROLE_KEY,
-        TenantConstants.TENANT_ADMIN_ROLE_KEY
-    }, mode = SaMode.OR)
     @SaCheckPermission("system:menu:list")
     @GetMapping("/list")
     public R<List<SysMenuVo>> list(SysMenuBo menu) {
@@ -68,10 +61,6 @@ public class SysMenuController extends BaseController {
      *
      * @param menuId 菜单ID
      */
-    @SaCheckRole(value = {
-        TenantConstants.SUPER_ADMIN_ROLE_KEY,
-        TenantConstants.TENANT_ADMIN_ROLE_KEY
-    }, mode = SaMode.OR)
     @SaCheckPermission("system:menu:query")
     @GetMapping(value = "/{menuId}")
     public R<SysMenuVo> getInfo(@PathVariable Long menuId) {
@@ -106,7 +95,6 @@ public class SysMenuController extends BaseController {
     /**
      * 新增菜单
      */
-    @SaCheckRole(TenantConstants.SUPER_ADMIN_ROLE_KEY)
     @SaCheckPermission("system:menu:add")
     @Log(title = "菜单管理", businessType = BusinessType.INSERT)
     @RepeatSubmit()
@@ -125,7 +113,6 @@ public class SysMenuController extends BaseController {
     /**
      * 修改菜单
      */
-    @SaCheckRole(TenantConstants.SUPER_ADMIN_ROLE_KEY)
     @SaCheckPermission("system:menu:edit")
     @Log(title = "菜单管理", businessType = BusinessType.UPDATE)
     @RepeatSubmit()
@@ -148,7 +135,6 @@ public class SysMenuController extends BaseController {
      *
      * @param menuId 菜单ID
      */
-    @SaCheckRole(TenantConstants.SUPER_ADMIN_ROLE_KEY)
     @SaCheckPermission("system:menu:remove")
     @Log(title = "菜单管理", businessType = BusinessType.DELETE)
     @DeleteMapping("/{menuId}")
@@ -176,7 +162,6 @@ public class SysMenuController extends BaseController {
      *
      * @param menuIds 菜单ID串
      */
-    @SaCheckRole(TenantConstants.SUPER_ADMIN_ROLE_KEY)
     @SaCheckPermission("system:menu:remove")
     @Log(title = "菜单管理", businessType = BusinessType.DELETE)
     @DeleteMapping("/cascade/{menuIds}")

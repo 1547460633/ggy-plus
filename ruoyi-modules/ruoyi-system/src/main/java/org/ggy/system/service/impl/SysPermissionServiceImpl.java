@@ -1,7 +1,6 @@
 package org.ggy.system.service.impl;
 
 import lombok.RequiredArgsConstructor;
-import org.ggy.common.core.constant.TenantConstants;
 import org.ggy.common.core.service.PermissionService;
 import org.ggy.common.satoken.utils.LoginHelper;
 import org.ggy.system.service.ISysMenuService;
@@ -35,7 +34,7 @@ public class SysPermissionServiceImpl implements ISysPermissionService, Permissi
         Set<String> roles = new HashSet<>();
         // 管理员拥有所有权限
         if (LoginHelper.isSuperAdmin(userId)) {
-            roles.add(TenantConstants.SUPER_ADMIN_ROLE_KEY);
+            roles.add("superadmin");
         } else {
             roles.addAll(roleService.selectRolePermissionByUserId(userId));
         }

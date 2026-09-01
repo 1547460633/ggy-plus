@@ -17,13 +17,7 @@ public class LogininforEvent implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
-
-    /**
-     * 租户ID
-     */
-    private String tenantId;
-
-    /**
+/**
      * 用户账号
      */
     private String username;

@@ -13,7 +13,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.RequiredArgsConstructor;
 import org.ggy.common.core.constant.CacheNames;
 import org.ggy.common.core.constant.SystemConstants;
-import org.ggy.common.core.constant.TenantConstants;
 import org.ggy.common.core.domain.model.LoginUser;
 import org.ggy.common.core.exception.ServiceException;
 import org.ggy.common.core.service.RoleService;
@@ -224,7 +223,7 @@ public class SysRoleServiceImpl implements ISysRoleService, RoleService {
         if (ObjectUtil.isNotNull(role.getRoleId()) && LoginHelper.isSuperAdmin(role.getRoleId())) {
             throw new ServiceException("不允许操作超级管理员角色");
         }
-        String[] keys = new String[]{TenantConstants.SUPER_ADMIN_ROLE_KEY, TenantConstants.TENANT_ADMIN_ROLE_KEY};
+        String[] keys = new String[]{"superadmin"};
         // 新增不允许使用 管理员标识符
         if (ObjectUtil.isNull(role.getRoleId())
             && StringUtils.equalsAny(role.getRoleKey(), keys)) {

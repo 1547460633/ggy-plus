@@ -28,13 +28,7 @@ public class SysOperLogBo {
      * 日志主键
      */
     private Long operId;
-
-    /**
-     * 租户编号
-     */
-    private String tenantId;
-
-    /**
+/**
      * 模块标题
      */
     private String title;

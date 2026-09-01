@@ -10,7 +10,6 @@
         select fi.id,
                fi.create_time,
                fi.update_time,
-               fi.tenant_id,
                fi.del_flag,
                fi.definition_id,
                fi.business_id,

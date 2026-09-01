@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @ggy
  */
-@InterceptorIgnore(dataPermission = "true", tenantLine = "true")
+@InterceptorIgnore(dataPermission = "true")
 public interface GenTableMapper extends BaseMapperPlus<GenTable, GenTable> {
 
     /**

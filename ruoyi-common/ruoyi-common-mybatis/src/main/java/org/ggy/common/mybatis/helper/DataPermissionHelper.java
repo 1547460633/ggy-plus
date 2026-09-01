@@ -132,7 +132,6 @@ public class DataPermissionHelper {
             boolean noOtherIgnoreStrategy = !Boolean.TRUE.equals(ignoreStrategy.getDynamicTableName())
                 && !Boolean.TRUE.equals(ignoreStrategy.getBlockAttack())
                 && !Boolean.TRUE.equals(ignoreStrategy.getIllegalSql())
-                && !Boolean.TRUE.equals(ignoreStrategy.getTenantLine())
                 && CollectionUtil.isEmpty(ignoreStrategy.getOthers());
             Stack<Integer> reentrantStack = REENTRANT_IGNORE.get();
             boolean empty = reentrantStack.isEmpty() || reentrantStack.pop() == 1;

@@ -22,13 +22,7 @@ public class OperLogEvent implements Serializable {
      * 日志主键
      */
     private Long operId;
-
-    /**
-     * 租户ID
-     */
-    private String tenantId;
-
-    /**
+/**
      * 操作模块
      */
     private String title;

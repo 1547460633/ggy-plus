@@ -30,13 +30,7 @@ public class SysSocialVo implements Serializable {
      * 用户ID
      */
     private Long userId;
-
-    /**
-     * 租户ID
-     */
-    private String tenantId;
-
-    /**
+/**
      * 的唯一ID
      */
     private String authId;
