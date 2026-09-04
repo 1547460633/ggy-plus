@@ -121,7 +121,7 @@
             <!-- common 的依赖配置-->
             <dependency>
                 <groupId>org.ggy</groupId>
-                <artifactId>ruoyi-common-bom</artifactId>
+                <artifactId>common-bom</artifactId>
                 <version>${revision}</version>
                 <type>pom</type>
                 <scope>import</scope>
@@ -328,32 +328,32 @@
 
             <dependency>
                 <groupId>org.ggy</groupId>
-                <artifactId>ruoyi-system</artifactId>
+                <artifactId>system</artifactId>
                 <version>${revision}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.ggy</groupId>
-                <artifactId>ruoyi-job</artifactId>
+                <artifactId>job</artifactId>
                 <version>${revision}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.ggy</groupId>
-                <artifactId>ruoyi-generator</artifactId>
+                <artifactId>generator</artifactId>
                 <version>${revision}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.ggy</groupId>
-                <artifactId>ruoyi-demo</artifactId>
+                <artifactId>demo</artifactId>
                 <version>${revision}</version>
             </dependency>
 
             <!--  工作流模块  -->
             <dependency>
                 <groupId>org.ggy</groupId>
-                <artifactId>ruoyi-workflow</artifactId>
+                <artifactId>workflow</artifactId>
                 <version>${revision}</version>
             </dependency>
 
@@ -361,10 +361,10 @@
     </dependencyManagement>
 
     <modules>
-        <module>ruoyi-admin</module>
-        <module>ruoyi-common</module>
-        <module>ruoyi-extend</module>
-        <module>ruoyi-modules</module>
+        <module>admin</module>
+        <module>common</module>
+        <module>extend</module>
+        <module>modules</module>
     </modules>
     <packaging>pom</packaging>
 

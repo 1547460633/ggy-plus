@@ -8,10 +8,10 @@
 - 技术栈：Java 17、Spring Boot 3.5、MyBatis-Plus、Sa-Token、Redis/Redisson、MySQL、Lombok、MapStruct Plus、Springdoc。
 - 根包名为 `org.ggy`。禁止新建或引用 `org.dromara` 的内部包。
 - `org.dromara.sms4j`、`org.dromara.warm` 是第三方依赖包，必须保留。
-- 主启动模块：`ruoyi-admin`。
-- 业务模块：`ruoyi-modules`（system、job、generator、demo、workflow）。
-- 公共能力：`ruoyi-common`。
-- 扩展模块：`ruoyi-extend`。
+- 主启动模块：`admin`。
+- 业务模块：`modules`（system、job、generator、demo、workflow）。
+- 公共能力：`common`。
+- 扩展模块：`extend`。
 
 ## 实现规范
 
