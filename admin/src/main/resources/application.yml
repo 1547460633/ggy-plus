@@ -47,6 +47,14 @@ user:
     # 密码锁定时间（默认10分钟）
     lockTime: 10
 
+# 微信小程序登录。敏感凭证仅从环境变量读取，禁止提交真实 appSecret。
+wechat:
+  mini-program:
+    app-id: ${WECHAT_MINI_PROGRAM_APP_ID:}
+    app-secret: ${WECHAT_MINI_PROGRAM_APP_SECRET:}
+    # 30 天，单位：秒
+    token-timeout: ${WECHAT_MINI_PROGRAM_TOKEN_TIMEOUT:2592000}
+
 # Spring配置
 spring:
   application:

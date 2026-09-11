@@ -34,6 +34,9 @@ import org.ggy.web.domain.vo.LoginVo;
 import org.ggy.web.service.IAuthStrategy;
 import org.ggy.web.service.SysLoginService;
 import org.ggy.web.service.SysRegisterService;
+import org.ggy.web.service.WechatMiniProgramLoginService;
+import org.ggy.web.domain.bo.WechatMiniProgramLoginBo;
+import org.ggy.web.domain.vo.WechatMiniProgramLoginVo;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -59,6 +62,7 @@ public class AuthController {
 
     private final SocialProperties socialProperties;
     private final SysLoginService loginService;
+    private final WechatMiniProgramLoginService wechatMiniProgramLoginService;
     private final SysRegisterService registerService;
     private final ISysConfigService configService;
     private final ISysSocialService socialUserService;
@@ -99,6 +103,17 @@ public class AuthController {
             SseMessageUtils.publishMessage(dto);
         }, 5, TimeUnit.SECONDS);
         return R.ok(loginVo);
+    }
+
+    /**
+     * 微信小程序登录。
+     *
+     * @param body 微信登录凭证
+     * @return 小程序登录令牌与用户信息
+     */
+    @PostMapping("/wechat/login")
+    public R<WechatMiniProgramLoginVo> wechatLogin(@Validated @RequestBody WechatMiniProgramLoginBo body) {
+        return R.ok(wechatMiniProgramLoginService.login(body.getCode()));
     }
 
     /**
