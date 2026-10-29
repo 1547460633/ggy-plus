@@ -75,6 +75,18 @@
             <artifactId>job</artifactId>
         </dependency>
 
+        <!-- 物联网设备模块 -->
+        <dependency>
+            <groupId>org.ggy</groupId>
+            <artifactId>iot</artifactId>
+        </dependency>
+
+        <!-- 商城业务模块 -->
+        <dependency>
+            <groupId>org.ggy</groupId>
+            <artifactId>mall</artifactId>
+        </dependency>
+
         <!-- 代码生成-->
         <dependency>
             <groupId>org.ggy</groupId>

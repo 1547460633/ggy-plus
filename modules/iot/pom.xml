@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>org.ggy</groupId>
+        <artifactId>modules</artifactId>
+        <version>${revision}</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>iot</artifactId>
+    <description>物联网设备业务模块</description>
+
+    <dependencies>
+        <dependency><groupId>org.ggy</groupId><artifactId>common-core</artifactId></dependency>
+        <dependency><groupId>org.ggy</groupId><artifactId>common-json</artifactId></dependency>
+        <dependency><groupId>org.ggy</groupId><artifactId>common-mybatis</artifactId></dependency>
+        <dependency><groupId>org.ggy</groupId><artifactId>common-satoken</artifactId></dependency>
+        <dependency><groupId>org.ggy</groupId><artifactId>common-web</artifactId></dependency>
+        <dependency><groupId>org.ggy</groupId><artifactId>common-log</artifactId></dependency>
+        <dependency><groupId>org.ggy</groupId><artifactId>common-idempotent</artifactId></dependency>
+        <dependency><groupId>com.hivemq</groupId><artifactId>hivemq-mqtt-client</artifactId></dependency>
+        <dependency><groupId>org.springframework.security</groupId><artifactId>spring-security-crypto</artifactId></dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>

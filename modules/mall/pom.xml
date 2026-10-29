@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>org.ggy</groupId>
+        <artifactId>modules</artifactId>
+        <version>${revision}</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>mall</artifactId>
+    <description>商城业务模块</description>
+    <dependencies>
+        <dependency><groupId>org.ggy</groupId><artifactId>common-core</artifactId></dependency>
+        <dependency><groupId>org.ggy</groupId><artifactId>common-mybatis</artifactId></dependency>
+        <dependency><groupId>org.ggy</groupId><artifactId>common-satoken</artifactId></dependency>
+        <dependency><groupId>org.ggy</groupId><artifactId>common-web</artifactId></dependency>
+        <dependency><groupId>org.ggy</groupId><artifactId>common-log</artifactId></dependency>
+        <dependency><groupId>org.ggy</groupId><artifactId>common-idempotent</artifactId></dependency>
+    </dependencies>
+</project>

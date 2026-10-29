@@ -8,9 +8,9 @@
     <artifactId>ggy-plus</artifactId>
     <version>${revision}</version>
 
-    <name>RuoYi-Vue-Plus</name>
-    <url>https://gitee.com/dromara/RuoYi-Vue-Plus</url>
-    <description>Dromara RuoYi-Vue-Plus多租户管理系统</description>
+    <name>Ggy-Plus</name>
+    <url>https://github.com/1547460633/ggy-plus.git</url>
+    <description>管理系统</description>
 
     <properties>
         <revision>5.6.2</revision>
@@ -49,6 +49,8 @@
         <anyline.version>8.7.3-20260319</anyline.version>
         <!-- 工作流配置 -->
         <warm-flow.version>1.8.5</warm-flow.version>
+        <!-- MQTT 客户端 -->
+        <hivemq-mqtt-client.version>1.4.0</hivemq-mqtt-client.version>
 
         <!-- 插件版本 -->
         <maven-jar-plugin.version>3.4.2</maven-jar-plugin.version>
@@ -327,6 +329,12 @@
             </dependency>
 
             <dependency>
+                <groupId>com.hivemq</groupId>
+                <artifactId>hivemq-mqtt-client</artifactId>
+                <version>${hivemq-mqtt-client.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>org.ggy</groupId>
                 <artifactId>system</artifactId>
                 <version>${revision}</version>
@@ -335,6 +343,18 @@
             <dependency>
                 <groupId>org.ggy</groupId>
                 <artifactId>job</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.ggy</groupId>
+                <artifactId>iot</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.ggy</groupId>
+                <artifactId>mall</artifactId>
                 <version>${revision}</version>
             </dependency>
 

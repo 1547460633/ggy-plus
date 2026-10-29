@@ -13,6 +13,8 @@
         <module>demo</module>
         <module>generator</module>
         <module>job</module>
+        <module>iot</module>
+        <module>mall</module>
         <module>system</module>
         <module>workflow</module>
     </modules>

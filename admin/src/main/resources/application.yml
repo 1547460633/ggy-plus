@@ -58,7 +58,7 @@ wechat:
 # Spring配置
 spring:
   application:
-    name: RuoYi-Vue-Plus
+    name: Ggy-Plus
   threads:
     # 开启虚拟线程 仅jdk21可用
     virtual:
@@ -124,6 +124,22 @@ security:
     - /*/api-docs
     - /*/api-docs/**
     - /warm-flow-ui/config
+    # EMQX 内部 HTTP 认证/授权回调，由 HMAC 签名二次保护。
+    - /iot/internal/mqtt/**
+
+# IoT MQTT 配置。生产环境必须使用 ssl:// 或 mqtts://，敏感信息仅从环境变量读取。
+iot:
+  mqtt:
+    enabled: ${IOT_MQTT_ENABLED:false}
+    broker-uri: ${IOT_MQTT_BROKER_URI:ssl://localhost:8883}
+    username: ${IOT_MQTT_USERNAME:}
+    password: ${IOT_MQTT_PASSWORD:}
+    client-id-prefix: ${IOT_MQTT_CLIENT_ID_PREFIX:ggy-iot-}
+    topic-prefix: ${IOT_MQTT_TOPIC_PREFIX:iot/v1}
+    heartbeat-timeout-seconds: ${IOT_MQTT_HEARTBEAT_TIMEOUT_SECONDS:90}
+    command-timeout-seconds: ${IOT_MQTT_COMMAND_TIMEOUT_SECONDS:30}
+    max-payload-bytes: ${IOT_MQTT_MAX_PAYLOAD_BYTES:65536}
+    internal-callback-secret: ${IOT_MQTT_INTERNAL_CALLBACK_SECRET:}
 
 # MyBatisPlus配置
 # https://baomidou.com/config/

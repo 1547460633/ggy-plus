@@ -1,0 +1,71 @@
+schema: spec-driven
+
+# ggy-plus 的项目约束。OpenSpec 在生成 proposal、design、specs、tasks 以及实施任务时应遵守以下上下文。
+context: |
+  项目为 ggy-plus，Maven 坐标为 org.ggy:ggy-plus，是基于 RuoYi-Vue-Plus 改造的多模块后端管理系统。
+
+  技术基线：Java 17、Maven、Spring Boot 3.5、Springdoc、MyBatis-Plus、Sa-Token、Redis/Redisson、MySQL、Lombok、MapStruct Plus。
+  根包为 org.ggy；新建的内部代码不得使用 org.dromara 包。org.dromara.sms4j 与 org.dromara.warm 是必须保留的第三方依赖。
+  不调整无关代码、不擅自升级或降级第三方依赖、不删除既有功能；优先复用已有工具类、异常体系、枚举、常量、缓存、权限与数据权限机制。
+
+  模块结构：
+  - admin：主启动模块，GgyApplication 是应用入口，负责组合业务模块。
+  - common：公共能力模块，包含 common-core、common-mybatis、common-web、common-satoken、common-redis、common-log 等。
+  - modules：业务模块，当前包含 system、job、generator、demo、mall、workflow。
+  - extend：独立扩展服务，当前包含 monitor-admin 与 snailjob-server。
+  - db/migration：MySQL 增量迁移脚本目录，文件名使用 YYYYMMDD_英文描述.sql。
+
+  后端分层与命名：
+  - 持久化实体放在 domain；请求/业务对象放在 domain.bo，类名以 Bo 结尾；响应视图对象放在 domain.vo，类名以 Vo 结尾。
+  - 数据库访问放在 mapper，接口名以 Mapper 结尾，优先继承项目的 BaseMapperPlus 并使用 MyBatis-Plus 能力。
+  - 业务接口放在 service，通常命名为 I<业务名>Service；实现放在 service.impl，通常命名为 <业务名>ServiceImpl。
+  - Web 接口放在 controller（可按 system、monitor 等业务域继续分包），类名以 Controller 结尾。
+  - Java 类型、方法使用既有的 PascalCase/camelCase 风格；数据库表和字段沿用小写下划线命名。
+  - 新增 JavaDoc 和代码注释使用中文；新增作者标记使用 @ggy。
+
+  接口实现约定：
+  - Controller 使用 @Validated、@RequiredArgsConstructor、@RestController、@RequestMapping，并继承或复用 BaseController 的能力。
+  - 单值/普通接口使用 R<T> 统一返回；分页查询使用 PageQuery 和 TableDataInfo<T>。
+  - 写操作按既有接口补充 Sa-Token 权限校验、@Log 操作日志、请求参数校验；需要时使用 @RepeatSubmit、数据权限校验和事务。
+  - 查询条件优先使用 MyBatis-Plus Wrapper；实体映射优先使用 MapStruct Plus 的 @AutoMapper；遵循 BaseEntity、逻辑删除和审计字段约定。
+  - 涉及敏感数据、导入导出、加密、文件存储、缓存、数据权限时，先查找并复用 common 模块中的现有实现。
+
+  配置与数据库约束：
+  - 修改表、字段、索引或初始化数据时，必须在 db/migration 新增可执行的 MySQL 增量脚本，并在变更文档中说明迁移影响、兼容性与回滚方案。
+  - 对开发数据库执行新增、修改、删除或 DDL 前必须取得用户明确授权；默认仅执行只读检查。
+  - Redis 未配置密码时，不得保留空的 password: 配置项，应删除或注释，避免 Redisson 进行空密码认证。
+
+  验证基线：
+  - 项目只支持 Java 17，不使用 Java 8 进行编译或验证。
+  - 根据变更范围执行相关 Maven 模块编译、测试或 Spring Boot 启动验证；根项目默认跳过测试时，需显式说明实际测试是否执行。
+
+rules:
+  proposal:
+    - 用中文说明问题、目标、范围、非目标与验收结果。
+    - 明确受影响的 Maven 模块、包、接口、权限点、配置和数据库对象；无影响时也要说明。
+    - 涉及数据结构时，说明迁移顺序、历史数据兼容性、回滚策略和 db/migration 脚本名称。
+    - 不把无关的重构、依赖升级或功能删除纳入变更范围。
+  design:
+    - 设计应映射到现有 Controller、Service、Mapper、domain/domain.bo/domain.vo 分层，并优先列出可复用的 common 能力。
+    - 新增或变更 API 时说明路由、HTTP 方法、请求 Bo、响应 R<T> 或 TableDataInfo<T>、权限标识、操作日志和校验规则。
+    - 涉及权限、数据权限、逻辑删除、事务、缓存、敏感数据或并发控制时，必须说明采用的现有机制。
+    - 涉及数据库时提供 MySQL DDL/DML 设计、索引考虑、兼容策略与回滚方式；不要把写库操作视为默认已获授权。
+  specs:
+    - 使用可验证的 SHALL/MUST 需求和 Given/When/Then 场景描述外部可观察行为。
+    - 规格需覆盖正常路径、权限不足、参数不合法、分页或并发边界，以及数据不存在等适用异常场景。
+    - 不在规格中暴露 org.dromara 的内部包或要求新增该包引用。
+  tasks:
+    - 按可实施顺序拆分任务：数据库迁移（如需要）、domain/Bo/Vo、Mapper、Service、Controller、配置、测试与验证。
+    - 每项任务写明对应模块和主要文件；数据库任务必须注明迁移脚本路径。
+    - 将权限、日志、校验、数据权限、统一返回、中文注释和 Java 17 验证列入适用任务，而不是留给实施者推断。
+
+operations:
+  apply:
+    guidance:
+      - 开始编码前先查看目标模块的相似实现，严格沿用其目录、命名、注解、返回类型和异常处理方式。
+      - 仅完成已批准变更范围内的工作；发现需要新的数据库写入、外部协调或范围扩张时先请求确认。
+      - 完成后汇总改动文件、核心实现、迁移影响及在 Java 17 下实际执行的验证命令和结果。
+  archive:
+    guidance:
+      - 归档前确认 tasks.md 中的任务均完成，并使用严格模式验证变更。
+      - 归档说明应记录已同步的主规格、数据库迁移脚本及验证结论；未执行的验证必须明确标注原因。
